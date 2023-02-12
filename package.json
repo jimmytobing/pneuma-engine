@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "description": "Simple Node Sandbox",
   "main": "services/greeter.service.js",
-  "scripts": {
-    "start": "nodemon --exec node_modules/moleculer/bin/moleculer-runner.js services"
-  },
   "devDependencies": {
     "moleculer-repl": "^0.5.3",
     "nodemon": "1.18.4"
@@ -19,7 +16,7 @@
   },
   "scripts": {
     "dev": "moleculer-runner --repl --hot services/**/*.service.js",
-    "start": "moleculer-runner",
+    "start": "nodemon --exec node_modules/moleculer/bin/moleculer-runner.js services",
     "cli": "moleculer connect NATS",
     "ci": "jest --watch",
     "test": "jest --coverage",
