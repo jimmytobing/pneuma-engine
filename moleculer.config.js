@@ -15,23 +15,30 @@
  */
 module.exports = {
   // Namespace of nodes to segment your nodes on the same network.
-  namespace: "",
+  namespace: '',
   // Unique node identifier. Must be unique in a namespace.
   nodeID: null,
 
   // Enable/disable logging or use custom logger. More info: https://moleculer.services/docs/0.13/logging.html
   logger: true,
   // Log level for built-in console logger. Available values: trace, debug, info, warn, error, fatal
-  logLevel: "info",
+  logLevel: 'info',
+
+  // Define transporter.
+  // More info: https://moleculer.services/docs/0.14/networking.html
+  // Note: During the development, you don't need to define it because all services will be loaded locally.
+  // In production you can set it via `TRANSPORTER=nats://localhost:4222` environment variable.
+  //transporter: 'nats://demo.nats.io', //"NATS"
+
   // Log formatter for built-in console logger. Available values: default, simple, short. It can be also a `Function`.
-  logFormatter: "default",
+  logFormatter: 'default',
   // Custom object & array printer for built-in console logger.
   logObjectPrinter: null,
 
   // Define a serializer.
   // Available values: "JSON", "Avro", "ProtoBuf", "MsgPack", "Notepack", "Thrift".
   // More info: https://moleculer.services/docs/0.13/networking.html
-  serializer: "JSON",
+  serializer: 'JSON',
 
   // Number of milliseconds to wait before reject a request with a RequestTimeout error. Disabled: 0
   requestTimeout: 10 * 1000,
@@ -49,7 +56,7 @@ module.exports = {
     // Backoff factor for delay. 2 means exponential backoff.
     factor: 2,
     // A function to check failed requests.
-    check: err => err && !!err.retryable
+    check: (err) => err && !!err.retryable,
   },
 
   // Limit of calling level. If it reaches the limit, broker will throw an MaxCallLevelError error. (Infinite loop protection)
@@ -65,7 +72,7 @@ module.exports = {
     // Enable feature
     enabled: false,
     // Number of milliseconds to wait before shutdowning the process
-    shutdownTimeout: 5000
+    shutdownTimeout: 5000,
   },
 
   // Disable built-in request & emit balancer. (Transporter must support it, as well.)
@@ -75,9 +82,9 @@ module.exports = {
   registry: {
     // Define balancing strategy.
     // Available values: "RoundRobin", "Random", "CpuUsage", "Latency"
-    strategy: "RoundRobin",
+    strategy: 'RoundRobin',
     // Enable local action call preferring.
-    preferLocal: true
+    preferLocal: true,
   },
 
   // Settings of Circuit Breaker. More info: https://moleculer.services/docs/0.13/fault-tolerance.html#Circuit-Breaker
@@ -93,7 +100,7 @@ module.exports = {
     // Number of milliseconds to switch from open to half-open state
     halfOpenTime: 10 * 1000,
     // A function to check failed requests.
-    check: err => err && err.code >= 500
+    check: (err) => err && err.code >= 500,
   },
 
   // Settings of bulkhead feature. More info: https://moleculer.services/docs/0.13/fault-tolerance.html#Bulkhead
@@ -103,7 +110,7 @@ module.exports = {
     // Maximum concurrent executions.
     concurrency: 10,
     // Maximum size of queue
-    maxQueueSize: 100
+    maxQueueSize: 100,
   },
 
   // Enable parameters validation. More info: https://moleculer.services/docs/0.13/validating.html
@@ -137,5 +144,5 @@ module.exports = {
   stopped(broker) {},
 
   // Register custom REPL commands.
-  replCommands: null
+  replCommands: null,
 };
